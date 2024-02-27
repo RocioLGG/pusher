@@ -11,24 +11,24 @@ $pusher = new Pusher\Pusher(
     )
 );
 
-// Modify the values of the pie chart and the text below it 10 times
+
 for ($i = 0; $i < 10 ; $i++) {
-    // Modify the values for Andalucia, Aragon, Asturias, Baleares, Canarias, Cantabria, and Castilla y Leon respectively
     $xValues = ["Andalucia", "Aragon", "Asturias", "Baleares", "Canarias", "Cantabria", "Castilla y Leon"];
     $yValues = [];
 
-    // Generate random values for each region
+
     for ($j = 0; $j < count($xValues); $j++) {
-        $yValues[] = rand(1000, 5000); // Generating random values between 1000 and 5000 for each region
+        $yValues[] = rand(1000, 5000);
     }
 
-    // Convert the array of random values to JavaScript array format
     $yValuesJavaScript = json_encode($yValues);
 
     // Trigger the event with modified values
     $pusher->trigger('my-channel', 'my-event', array('values' => $yValuesJavaScript));
 
-    // Sleep for 1 second to simulate real-time updates
-    sleep(1);
+    //sleep(1);
+    time_nanosleep(1,0);
 }
+    header("Location: index.html");
+    exit();
 ?>
